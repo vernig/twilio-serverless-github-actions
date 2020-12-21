@@ -14,7 +14,8 @@ jobs:
         node-version: [10]
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout code 
+        uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -22,7 +23,7 @@ jobs:
       - name: npm install and deploy
         run: |
           npm install
-          npm run deploy -- --account-sid ${{secrets.ACCOUNT_SID}} --auth-token ${{secrets.AUTH_TOKEN}} --override-existing-project
+          npm run deploy -- --account-sid ${{secrets.TWILIO_ACCOUNT_SID}} --auth-token ${{secrets.TWILIO_AUTH_TOKEN}} --override-existing-project
         env:
           CI: true
 
